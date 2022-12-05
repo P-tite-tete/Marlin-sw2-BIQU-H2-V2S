@@ -1091,7 +1091,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 20, 50 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 20, 40 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1119,7 +1119,7 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          1250    // X, Y, Z ... and E acceleration for printing moves
+#define DEFAULT_ACCELERATION          2000    // X, Y, Z ... and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z ... acceleration for travel (non printing) moves
 
@@ -1133,8 +1133,8 @@
  */
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 8.0
-  #define DEFAULT_YJERK 8.0
+  #define DEFAULT_XJERK 10.0
+  #define DEFAULT_YJERK 10.0
   #define DEFAULT_ZJERK  0.3
   //#define DEFAULT_IJERK  0.3
   //#define DEFAULT_JJERK  0.3
@@ -1148,7 +1148,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    11.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    10.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1492,8 +1492,8 @@
 // Require minimum nozzle and/or bed temperature for probing
 //#define PREHEAT_BEFORE_PROBING
 #if ENABLED(PREHEAT_BEFORE_PROBING)
-  #define PROBING_NOZZLE_TEMP 210   // (°C) Only applies to E0 at this time
-  #define PROBING_BED_TEMP     70
+  #define PROBING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
+  #define PROBING_BED_TEMP     50
 #endif
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
@@ -1578,15 +1578,11 @@
 #define Y_BED_SIZE 300
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-// ASX2_1
-#define X_MIN_POS -9.7
-#define Y_MIN_POS 4.3
-// ASX2_2
-//#define X_MIN_POS -9.8
-//#define Y_MIN_POS 0.8
+#define X_MIN_POS -9.8
+#define Y_MIN_POS 0.8
 #define Z_MIN_POS 0
-#define X_MAX_POS (X_BED_SIZE+7)
-#define Y_MAX_POS (Y_BED_SIZE+17)
+#define X_MAX_POS (X_BED_SIZE+5)
+#define Y_MAX_POS (Y_BED_SIZE+15)
 #define Z_MAX_POS 400
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
@@ -1803,7 +1799,7 @@
     #define MESH_TEST_HOTEND_TEMP  210    // (°C) Default nozzle temperature for G26.
     #define MESH_TEST_BED_TEMP      70    // (°C) Default bed temperature for G26.
     #define G26_XY_FEEDRATE         20    // (mm/s) Feedrate for G26 XY moves.
-    #define G26_XY_FEEDRATE_TRAVEL 100    // (mm/s) Feedrate for G26 XY travel moves.
+    #define G26_XY_FEEDRATE_TRAVEL 70    // (mm/s) Feedrate for G26 XY travel moves.
     #define G26_RETRACT_MULTIPLIER   1.0  // G26 Q (retraction) used by default between mesh test elements.
   #endif
 
@@ -2092,10 +2088,10 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS), 50 }
+  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 50 }
   #define NOZZLE_PARK_MOVE          0   // Park motion: 0 = XY Move, 1 = X Only, 2 = Y Only, 3 = X before Y, 4 = Y before X
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
-  #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
+  #define NOZZLE_PARK_XY_FEEDRATE  80   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
   #define NOZZLE_PARK_Z_FEEDRATE    5   // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
 
